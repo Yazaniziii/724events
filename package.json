@@ -1,5 +1,5 @@
 {
-  "name": "724-events",
+  "name": "724events",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -48,5 +48,9 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
     "prettier": "^2.6.2"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Yazaniziii/724events.git",
+  "author": "Nicolas <nicolasbournas@hotmail.fr>",
+  "license": "MIT"
 }
