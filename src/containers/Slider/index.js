@@ -53,8 +53,10 @@ const Slider = () => {
                 key={`${_.title}`}
                 type="radio"
                 name="radio-button"
-                defaultChecked={idx === radioIdx} // Utilisation de defaultChecked
-                onChange={() => null} // Ajout d'une fonction onChange vide pour éviter le warning
+                // remplace idx par index
+                checked={index === radioIdx}
+                // Ajout readOnly
+                readOnly
               />
               ))}
             </div>
