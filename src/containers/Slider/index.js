@@ -8,7 +8,8 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 0
+  // Modification sens de sort Avant : evtA < evtB Après :
+    new Date(evtB.date) < new Date(evtA.date) ? 1 : -1
   );
 
   // Trie le tableau focus contenu dans l'objet data par date dans l'ordre décroissant. Du plus ancien au plus récent.
