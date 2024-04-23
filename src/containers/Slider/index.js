@@ -31,7 +31,6 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
         <div key={event.title}>
-          
           <div
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
@@ -50,7 +49,8 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                key={`${event.id}`}
+                // Modification key par _.title
+                key={`${_.title}`}
                 type="radio"
                 name="radio-button"
                 defaultChecked={idx === radioIdx} // Utilisation de defaultChecked
