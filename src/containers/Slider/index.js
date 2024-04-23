@@ -62,11 +62,12 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
-                  type="radio"
-                  name="radio-button"
-                  checked={idx === radioIdx}
-                />
+                key={`${event.id}`}
+                type="radio"
+                name="radio-button"
+                defaultChecked={idx === radioIdx} // Utilisation de defaultChecked
+                onChange={() => null} // Ajout d'une fonction onChange vide pour éviter le warning
+              />
               ))}
             </div>
           </div>
