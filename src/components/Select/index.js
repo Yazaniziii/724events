@@ -13,13 +13,15 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null); // Utilisez null comme valeur initiale
   const [collapsed, setCollapsed] = useState(true);
+
   const changeValue = (newValue) => {
-    onChange(newValue); // Ajout de la valeur newValue dans OnChange
-    setValue(newValue);
-    setCollapsed(newValue);
+    setValue(newValue); // Mettez à jour la valeur sélectionnée
+    setCollapsed(true); // Réduire le volet déroulant après la sélection
+    onChange(newValue); // Appeler la fonction onChange avec la nouvelle valeur
   };
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
@@ -32,7 +34,11 @@ const Select = ({
             <>
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
-                  <input defaultChecked={!value} name="selected" type="radio" />{" "}
+                  <input
+                    defaultChecked={!value}
+                    name="selected"
+                    type="radio"
+                  />{" "}
                   Toutes
                 </li>
               )}
@@ -49,15 +55,12 @@ const Select = ({
             </>
           )}
         </ul>
-        <input type="hidden" value={value || ""} name={name} />
+        <input type="hidden" value={value || ""} name={name} /> {/* Assurez-vous que le champ input contient la valeur sélectionnée */}
         <button
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollapsed(!collapsed);
-          }}
+          onClick={() => setCollapsed(!collapsed)} // Inverser l'état de collapsed
         >
           <Arrow />
         </button>
@@ -83,19 +86,18 @@ const Arrow = () => (
 
 Select.propTypes = {
   selection: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   name: PropTypes.string,
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
+};
 
 Select.defaultProps = {
-  onChange: () => null,
   titleEmpty: false,
   label: "",
   type: "normal",
   name: "select",
-}
+};
 
 export default Select;
