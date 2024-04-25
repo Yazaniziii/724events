@@ -13,13 +13,12 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState(null); // Utilisez null comme valeur initiale
+  const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
-
   const changeValue = (newValue) => {
-    setValue(newValue); // Mettez à jour la valeur sélectionnée
-    setCollapsed(true); // Réduire le volet déroulant après la sélection
-    onChange(newValue); // Appeler la fonction onChange avec la nouvelle valeur
+    onChange(newValue); // Ajout de (newValue)
+    setValue(newValue);
+    setCollapsed(newValue);
   };
 
   return (
@@ -86,7 +85,7 @@ const Arrow = () => (
 
 Select.propTypes = {
   selection: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func, 
   name: PropTypes.string,
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
@@ -94,6 +93,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  onChange: () => null,
   titleEmpty: false,
   label: "",
   type: "normal",
